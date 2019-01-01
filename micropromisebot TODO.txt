@@ -1,0 +1,47 @@
+micropromisebot TODO
+
+- get posts
+- get promise posts
+
+- store promise posts
+	- sqlite layer
+	- model
+	- check if exists
+	- update?
+	- parse timeframes to datetimes
+
+
+- check pledges
+	- get new pledge comments
+	- store pledge row
+		model
+		store comment?
+- check watchers
+	- get new watch comments 
+	- store as watchers
+
+- check promise db
+	- if promise timeframe elapsed:
+		- send reminder to promiser
+		- send reminder to pledgers
+		- create thread
+	- set promise as inactive
+	- set pledges as inactive
+
+- check results thread
+	- if there's a comment from a pledger or the promiser:
+		- if starts with KEPT, add that to OP
+
+- throttle users
+	- for pledges or promises
+	- if user has > 5 active
+	- reply: denied
+
+- flair
+	- [promises kept] / [promises made]
+	- [pledges made] / [pledges kept]
+	
+- put on github
+- upload to EC2
+- add cron
+

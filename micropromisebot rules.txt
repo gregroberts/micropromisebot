@@ -1,0 +1,30 @@
+micropromisebot rules
+
+when someone posts a promise:
+- crearte a new promise row
+	- record time
+	- target time
+	- target
+- for each comment
+- If comment starts with: PLEDGE
+		- create pledge row, joined to promise row
+		- add user
+- if comment starts with: WATCH
+		- create reminder row
+		- remind user when promise is up
+			- via DM, capture response to DM
+when promise is up:
+	- remind prmiser of their promise
+	- remind pledges of their pledge
+	- make a thread 
+		- include context, link to original thread
+		- if pomiser/pledge responded to DM, include that as quote
+		- link to promiser & pledge so they get replies to their inbox?
+	- 
+When you get reminded of a promise or a pledge, reply to the  DM saying KEPT or NOT KEPT. If you don't reply, we will assume not kept. The bot will then post the results in the REULSTS thread.
+
+Flair:
+- [promises kept] / [promises made]
+- [pledges made] / [pledges kept]
+
+

@@ -311,7 +311,7 @@ def get_finished_promises():
 	c.execute('''
 		select * from promises
 		where live = 1
-		and elapses_time < datetime('now')
+		and datetime(elapses_time,\'unixepoch\')<datetime(\'now\')
 			
 	''')
 	finished_promises = c.fetchall()

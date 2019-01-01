@@ -180,7 +180,8 @@ def get_all_watch_comments():
 	watch_comments = []
 	for i in get_all_promise_comments():
 		print(i[1].body)
-		if i[1].body.lower().startswith('[watch]'):
+		if i[1].body.lower().startswith('[watch]') \
+		or i[1].body.lower().startswith('\[watch\]'):
 			print('watch!')
 			watch_comments.append(i)
 	return watch_comments
@@ -342,7 +343,8 @@ def get_all_kept_comments(results_thread):
 	kept_comments = []
 	for i in get_all_results_comments(results_thread):
 		print(i[1].body)
-		if i[1].body.lower().startswith('[kept]'):
+		if i[1].body.lower().startswith('[kept]')\
+		or if i[1].body.lower().startswith('\[kept\]'):
 			print('kept!')
 			kept_comments.append(i)
 	return kept_comments

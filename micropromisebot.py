@@ -344,7 +344,7 @@ def get_all_kept_comments(results_thread):
 	for i in get_all_results_comments(results_thread):
 		print(i[1].body)
 		if i[1].body.lower().startswith('[kept]')\
-		or if i[1].body.lower().startswith('\[kept\]'):
+		or i[1].body.lower().startswith('\[kept\]'):
 			print('kept!')
 			kept_comments.append(i)
 	return kept_comments

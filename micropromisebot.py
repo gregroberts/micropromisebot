@@ -259,18 +259,32 @@ def finish_promise(promise):
 	)
 	original_post_link = f'https://www.reddit.com/r/micropromise/comments/{promise[0]}/'
 	results_thread_body = f'''
-Back on {created_time}, {promiser_id} made a micropromise:
+Back on {created_time}, /u/{promiser_id} made a micropromise:
 
 [{promise_title}]({original_post_link})
 
 They got {n_pledges} pledges, from:\n\n
-{pledgerss}
+/u/{pledgerss}
 
 How did they do?\n\n
 '''
 	results_thread = rt.subreddit('micropromise').submit(
 		f'[RESULTS] {promise_title}',
 		selftext = results_thread_body
+	)
+	rt.redditor(promiser_id).message(
+		f'Micropromise reminder {promise_body}',
+		f'''
+Hey! Your promise '{promise_title}' has expired.
+Come join us in the results thread:
+https://www.reddit.com/r/micropromise/comments/{results_thread.id}/
+
+and write a comment starting with [KEPT] to tell us you succeeded.
+Didn't succeed? Don't worry about it! We all have stuff going on, 
+what's important is you're thinking on the right track.
+
+Feel free to start a new promise thread and keep the dream alive!
+		'''
 	)
 	#notify pledgers
 	for i in pledgers:

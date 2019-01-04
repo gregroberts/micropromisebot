@@ -1,47 +1,38 @@
 micropromisebot TODO
 
-- get posts
-- get promise posts
+- break up code into modules
+- break up workflow to page threads based on oldest currently held, live promise
+- move logic for seeing if promise is needed to be checked 
+- just streamline ting
+- move post/comment/message templates to text files
 
-- store promise posts
-	- sqlite layer
-	- model
-	- check if exists
-	- update?
-	- parse timeframes to datetimes
-
-
-- check pledges
-	- get new pledge comments
-	- store pledge row
-		model
-		store comment?
-- check watchers
-	- get new watch comments 
-	- store as watchers
-
-- check promise db
-	- if promise timeframe elapsed:
-		- send reminder to promiser
-		- send reminder to pledgers
-		- create thread
-	- set promise as inactive
-	- set pledges as inactive
-
-- check results thread
-	- if there's a comment from a pledger or the promiser:
-		- if starts with KEPT, add that to OP
 
 - throttle users
 	- for pledges or promises
 	- if user has > 5 active
 	- reply: denied
 
-- flair
+- user flair
+	- [badge] 
 	- [promises kept] / [promises made]
 	- [pledges made] / [pledges kept]
 	
-- put on github
-- upload to EC2
-- add cron
+- badges
+	- badge for quality:
+		- {x}, PURE BEING [all promises kept]
+		- {x}, ON A ROLE [>50% promises kept]
+		- {x}, STARGAZER [<50% promises kept]
+		- {x}, LOYAL PLEDGE [0 promises, >0 pledges]
+		- {x}, CHEERLEADER [0 promises, >0 watches]
+	-  another for # of any action:
+		- PROLIFIC
+		- GENEROUS
+		- JOURNEYMAN
+		- FRESH FACED
+
+- mark threads as expired
+- stop accepting pledges to live promises
+- stop accepting KEPT to results threads after 24 hours
+- replace pledge comment with dm
+- facility for auto threads (automod?)
 

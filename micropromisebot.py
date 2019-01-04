@@ -166,7 +166,7 @@ def handle_plegde(pledge):
 	db.commit()
 	c.close()
 	pledge[1].reply(
-		body = 'Thanks for your plegde. You will get a reminder when the promise is due!'
+		body = 'Thanks for your pledge. You will get a reminder when the promise is due!'
 	)
 	promise = get_promise(pledge[0].id)
 	bot_comment_id = promise[6]

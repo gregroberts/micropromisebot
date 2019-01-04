@@ -1,11 +1,12 @@
 micropromisebot TODO
 
-- break up code into modules
-- break up workflow to page threads based on oldest currently held, live promise
-- move logic for seeing if promise is needed to be checked 
-- just streamline ting
-- move post/comment/message templates to text files
-
+refactor:
+	- break up code into modules
+	- break up workflow to page threads based on oldest currently held, live promise
+	- move logic for seeing if promise is needed to be checked 
+	- just streamline ting
+	- move post/comment/message templates to text files
+	- make sure broken promise posts dont get repeatedly finished
 
 - throttle users
 	- for pledges or promises
@@ -25,14 +26,15 @@ micropromisebot TODO
 		- {x}, LOYAL PLEDGE [0 promises, >0 pledges]
 		- {x}, CHEERLEADER [0 promises, >0 watches]
 	-  another for # of any action:
-		- PROLIFIC
-		- GENEROUS
-		- JOURNEYMAN
-		- FRESH FACED
+		- PROLIFIC [ promises + pledges + watches > 15]
+		- GENEROUS [promises + pledges + watches <= 15]
+		- JOURNEYMAN [promises + pledges + watches <= 5]
+		- FRESH FACED [1 promise/pledge/watch]
 
 - mark threads as expired
+- make micropromisebot promise comment stickied
 - stop accepting pledges to live promises
 - stop accepting KEPT to results threads after 24 hours
 - replace pledge comment with dm
 - facility for auto threads (automod?)
-
+- weekly leaderboard (Saturday)

@@ -1,2 +1,3 @@
 cd /home/ubuntu/micropromisebot
-python3 micropromisebot.py
+echo $1
+python3 $1

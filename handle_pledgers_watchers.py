@@ -37,10 +37,6 @@ def handle_watcher(watcher):
 		 )
 	)
 
-def handle_all_promises():
-	print('handling all promises')
-	for post in get_promise_posts():
-		handle_promise(post)
 
 def handle_all_pledges():
 	print('handling all pledges')

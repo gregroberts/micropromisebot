@@ -3,7 +3,8 @@ import parsedatetime as pdt
 from datetime import datetime
 from db import *
 from reddit import *
-cal = pdt.Calendar()
+from content import *
+
 
 def handle_promise(post):
 	print(f'Handling promise {post}')
@@ -19,21 +20,13 @@ def handle_promise(post):
 	created_time = post.created_utc
 	timeframe =  ','.join(re.findall('\[\w+] \[(.*)\]', title))
 	print(datetime.fromtimestamp(created_time))
+	cal = pdt.Calendar()
 	elapses_time = cal.parseDT(
 		timeframe,
 		sourceTime = datetime.fromtimestamp(created_time)
 	)[0]
-	bot_comment_id = post.reply(body = f'''Youve just made a micropromise!             
-	{title}\n\n
-elapses at: {elapses_time}\n\n
-Here are the pledges to your promise:
-	''').id
-	c = db.cursor()
-	c.execute('''
-		INSERT INTO promises
-		VALUES
-		(?,?,?,?,?,?,?, 1, ?)
-	''', 
+	bot_comment_id = comment_promise(post, title, elapses_time)
+	insert_promise(
 		(
 			_id,
 			title,
@@ -45,26 +38,15 @@ Here are the pledges to your promise:
 			user_name
 		)
 	)
-	db.commit()
-	c.close()
-
 
 
 def handle_plegde(pledge):
 	print(f'Handling pledge {pledge}')
-	c = db.cursor()
-	c.execute('''
-		select comment_id from pledges
-	''')
-	pledges = [i[0] for i in c.fetchall()]
+	pledges = get_pledges()
 	if pledge[1].id in pledges:
 		print('Pledge already handled')
 		return None
-	c.execute('''
-		insert into pledges 
-		values
-		(?,?,?,?)
-	''', 
+	insert_pledge(
 		(
 			pledge[0].id,
 			pledge[1].id,
@@ -72,11 +54,7 @@ def handle_plegde(pledge):
 			pledge[1].author.id
 		)
 	)
-	db.commit()
-	c.close()
-	pledge[1].reply(
-		body = 'Thanks for your pledge. You will get a reminder when the promise is due!'
-	)
+	comment_pledge(pledge[1])
 	promise = get_promise(pledge[0].id)
 	bot_comment_id = promise[6]
 	rt = get_reddit()
@@ -88,19 +66,13 @@ def handle_plegde(pledge):
 
 def handle_watcher(watcher):
 	print(f'Handling Watcher {watcher}')
-	c = db.cursor()
-	c.execute('''
-		INSERT INTO watchers
-		values
-			(?,?,?)
-	''', 
-		(watcher[0].id,
-		watcher[1].author.name,
-		 watcher[1].author.id
+	insert_watcher(
+		(
+			watcher[0].id,
+			watcher[1].author.name,
+			watcher[1].author.id
 		 )
 	)
-	db.commit()
-	c.close()
 
 def handle_all_promises():
 	print('handling all promises')

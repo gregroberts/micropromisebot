@@ -1,11 +1,9 @@
 micropromisebot TODO
 
 refactor:
-	- break up code into modules
 	- break up workflow to page threads based on oldest currently held, live promise
 	- move logic for seeing if promise is needed to be checked 
 	- just streamline ting
-	- move post/comment/message templates to text files
 	- make sure broken promise posts dont get repeatedly finished
 
 - throttle users

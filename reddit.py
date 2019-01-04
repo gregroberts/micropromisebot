@@ -14,7 +14,6 @@ def get_new_posts(limit=10):
 def get_promise_posts():
 	promise_posts = []
 	for i in get_new_posts(50):
-		print(i.title)
 		if i.title.lower().startswith('[promise]'):
 			promise_posts.append(i)
 	return promise_posts
@@ -31,10 +30,8 @@ def get_all_promise_comments():
 def get_all_watch_comments():
 	watch_comments = []
 	for i in get_all_promise_comments():
-		print(i[1].body)
 		if i[1].body.lower().startswith('[watch]') \
 		or i[1].body.lower().startswith('\[watch\]'):
-			print('watch!')
 			watch_comments.append(i)
 	return watch_comments
 
@@ -42,10 +39,8 @@ def get_all_watch_comments():
 def get_all_pledge_comments():
 	pledge_comments = []
 	for i in get_all_promise_comments():
-		print(i[1].body)
 		if i[1].body.lower().startswith('[pledge]') \
 		or i[1].body.lower().startswith('\[pledge\]') :
-			print('pledge!')
 			pledge_comments.append(i)
 	return pledge_comments
 
@@ -54,7 +49,6 @@ def get_results_posts():
 	print(' get_results_posts')
 	results_posts = []
 	for i in get_new_posts(50):
-		print(i.title)
 		if i.title.lower().startswith('[results]'):
 			results_posts.append(i)
 	return results_posts
@@ -72,9 +66,7 @@ def get_all_kept_comments(results_thread):
 	print(' get_all_kept_comments')
 	kept_comments = []
 	for i in get_all_results_comments(results_thread):
-		print(i[1].body)
 		if i[1].body.lower().startswith('[kept]')\
 		or i[1].body.lower().startswith('\[kept\]'):
-			print('kept!')
 			kept_comments.append(i)
 	return kept_comments

@@ -206,3 +206,7 @@ def update_kept_pledge(pledge_id):
 	''')
 	db.commit()
 	c.close()
+
+if __name__ == '__main__':
+    create_schema()
+

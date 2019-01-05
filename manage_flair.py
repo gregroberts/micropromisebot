@@ -7,7 +7,9 @@ def get_promises_scores():
     c.execute('''
     select
         user_name, 
-        coalesce(sum(kept),0),
+        coalesce(count(distinct case
+                when kept=1 then k.id else null
+            end),0),
         count(distinct p.id)
     from promises p
     left join kept_promises k
@@ -26,7 +28,9 @@ def get_pledge_scores():
     c.execute('''
     select
         user_name, 
-        coalesce(sum(kept),0),
+        coalesce(count(distinct case
+                    when kept=1 then p.promise_id else null
+                end),0),
         count(distinct promise_id)
     from pledges p
     left join kept_pledges k

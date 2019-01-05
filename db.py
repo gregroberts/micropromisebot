@@ -37,8 +37,19 @@ def create_schema():
 		)
 	''')
 	db.commit()
+	c.execute('''
+	create table if not exists kept_pledges (
+	id text, kept int
+	)
+	''')
+	db.commit()
+	c.execute('''
+	create table if not exists kept_promises (
+	id text, kept int
+	)
+	''')
+	db.commit()
 	c.close()
-
 
 def get_existent_promise_ids():
 	print('getting existing promises')
@@ -150,6 +161,48 @@ def update_finished_promise(promise_id):
 		update promises
 		set live = 0 
 		where id = '{promise_id}'
+	''')
+	db.commit()
+	c.close()
+
+
+def get_promises_to_check():
+	c = db.cursor()
+	c.execute('''
+		select id,user_name from promises
+		where id not in (select id from kept_promises)
+		and live = 0
+	''')
+	promises = c.fetchall()
+	return promises
+
+
+def update_kept_promise(promise_id, kept):
+	c = db.cursor()
+	c.execute(f'''
+		insert into kept_promises
+		values ('{promise_id}',{kept})
+	''')
+	db.commit()
+	c.close()
+
+
+def get_pledges_to_check():
+	c = db.cursor()
+	c.execute('''
+		select promise_id,user_name,comment_id from pledges
+		where promise_id not in (select id from kept_pledges)
+	''')
+	pledges = c.fetchall()
+	c.close()
+	return pledges
+
+
+def update_kept_pledge(pledge_id):
+	c = db.cursor()
+	c.execute(f'''
+		insert into kept_pledges
+		values ('{pledge_id}',1)
 	''')
 	db.commit()
 	c.close()

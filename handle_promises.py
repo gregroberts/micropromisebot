@@ -40,11 +40,10 @@ def handle_promise(post):
 	)
 
 
-
 def handle_all_promises():
 	print('handling all promises')
 	for post in get_promise_posts():
 		handle_promise(post)
-		
+
 if __name__ == '__main__':	
 	handle_all_promises()

@@ -1,9 +1,6 @@
 micropromisebot TODO
 
 refactor:
-	- break up workflow to page threads based on oldest currently held, live promise
-	- move logic for seeing if promise is needed to be checked 
-	- just streamline ting
 	- make sure broken promise posts dont get repeatedly finished
 
 - throttle users

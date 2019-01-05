@@ -117,9 +117,9 @@ def get_badge(score):
 def build_flair(score):
     badge = get_badge(score)
     score['badge'] = badge
-    score['promise_score'] = '{promises_kept}/{promises_made} promises'.format(**score)
-    score['pledge_score'] = '{pledges_kept}/{pledges_made} pledges'.format(**score)
-    score['watched'] = '{promises_watched} watched'.format(**score)
+    score['promise_score'] = '{promises_kept}/{promises_made}'.format(**score)
+    score['pledge_score'] = '{pledges_kept}/{pledges_made}'.format(**score)
+    score['watched'] = '{promises_watched}'.format(**score)
     flair = '{badge}|{promise_score}|{pledge_score}|{watched}'.format(**score)
     return flair
 

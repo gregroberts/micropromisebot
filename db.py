@@ -76,8 +76,11 @@ def get_promise(id):
 def get_promise_pledges(promise_id):
 	c = db.cursor()
 	c.execute(f'''
-		select * from pledges
+		select 
+                    promise_id,comment_id,user_name,user_id,count(*)
+                from pledges
 		where promise_id = '{promise_id}'
+                group by promise_id,comment_id,user_name,user_id
 	''')
 	pledgers = c.fetchall()
 	c.close()
@@ -87,8 +90,11 @@ def get_promise_pledges(promise_id):
 def get_promise_watchers(promise_id):
 	c = db.cursor()
 	c.execute(f'''
-		select * from watchers
+		select 
+                    promise_id,user_name,user_id,count(*)
+                from watchers
 		where promise_id = '{promise_id}'
+                group by promise_id,user_name,user_id
 	''')
 	watchers = c.fetchall()
 	c.close()
@@ -145,9 +151,10 @@ def get_pledges():
 def get_finished_promises():
 	c = db.cursor()
 	c.execute('''
-		select * from promises
+		select *,datetime(elapses_time,\'unixepoch\') from promises
 		where live = 1
 		and datetime(elapses_time,\'unixepoch\')<datetime(\'now\')
+                and elapses_time is not null
 			
 	''')
 	finished_promises = c.fetchall()
@@ -156,14 +163,15 @@ def get_finished_promises():
 
 
 def update_finished_promise(promise_id):
-	c = db.cursor()
-	c.execute(f'''
-		update promises
+        c = db.cursor()
+        print(f'marking {promise_id} as finshed')
+        c.execute(f'''
+                update promises
 		set live = 0 
 		where id = '{promise_id}'
 	''')
-	db.commit()
-	c.close()
+        db.commit()
+        c.close()
 
 
 def get_promises_to_check():

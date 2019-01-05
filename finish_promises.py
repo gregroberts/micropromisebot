@@ -18,10 +18,10 @@ def finish_promise(promise):
 		promise_title, 
 		pledgers,
 		promise
-	)
+	).id
 	message_promiser(
 		promise_title, 
-		results_thread.id,
+		results_thread,
 		promiser_id,
 		promise_title,
 	)
@@ -33,7 +33,7 @@ def finish_promise(promise):
 			pledger_id,
 			promiser_id, 
 			promisetitle,
-			results_thread_id
+			results_thread
 		)
 	#notify watchers
 	print('notifying watchers')
@@ -45,7 +45,7 @@ def finish_promise(promise):
 			watcher_id,
 			promiser_id,
 			promise_title,
-			results_thread_id
+			results_thread
 		)
 	update_finished_promise(promise[0])
 

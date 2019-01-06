@@ -32,7 +32,7 @@ def finish_promise(promise):
 		message_pledger(
 			pledger_id,
 			promiser_id, 
-			promisetitle,
+			promise_title,
 			results_thread
 		)
 	#notify watchers

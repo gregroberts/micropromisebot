@@ -110,9 +110,9 @@ def get_badge(score):
         kept_perc = score['promises_kept'] / float(score['promises_made'])
         if kept_perc<=0.5:
             qual_badge += 'STARGAZER'
-        elif kept_perc<1:
+        elif kept_perc<0.8:
             qual_badge += 'ON A ROLL'
-        elif kept_perc==1.0:
+        elif kept_perc>=0.8:
             qual_badge +='PERFECT BEING'
     badge = f'{quant_badge}, {qual_badge}'
     return badge

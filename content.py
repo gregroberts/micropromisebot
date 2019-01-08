@@ -27,7 +27,7 @@ def post_results_thread(promiser_id, created_time, promise_title, pledgers, prom
 
 def message_promiser(promise_title, results_thread_id, promiser_id, promise_body):
 	rt.redditor(promiser_id).message(
-		f'Micropromise reminder {promise_title}...',
+                f'Micropromise reminder {promise_title}...'[:96],
 		PROMISE_MESSAGE_BODY.format(**locals())
 	)
 

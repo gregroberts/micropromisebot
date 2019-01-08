@@ -20,10 +20,10 @@ def finish_promise(promise):
 		promise
 	).id
 	message_promiser(
-		promise_title, 
+                promise_title[:80]+'...', 
 		results_thread,
 		promiser_id,
-		promise_title,
+                promise_title[:80]+'...',
 	)
 	#notify pledgers
 	for i in pledgers:

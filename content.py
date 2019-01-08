@@ -27,18 +27,18 @@ def post_results_thread(promiser_id, created_time, promise_title, pledgers, prom
 
 def message_promiser(promise_title, results_thread_id, promiser_id, promise_body):
 	rt.redditor(promiser_id).message(
-                f'Micropromise reminder {promise_title}'+[:94]+'...',
+                f'Micropromise reminder {promise_title}'[:94]+'...',
 		PROMISE_MESSAGE_BODY.format(**locals())
 	)
 
 def message_pledger(pledger_id, promiser_id, promise_title, results_thread_id):
 	rt.redditor(pledger_id).message(
-                f'Micropromise reminder {promise_title}'+[:94]+'...',
+                f'Micropromise reminder {promise_title}'[:94]+'...',
 		PLEDGE_MESSAGE_BODY.format(**locals())
 	)
 
 def message_watcher(watcher_id, promiser_id, promise_title, results_thread_id):
 	rt.redditor(watcher_id).message(
-                f'Micropromise reminder {promise_title}'+[:94]+'...',
+                f'Micropromise reminder {promise_title}'[:94]+'...',
 		WATCHER_MESSAGE_BODY.format(**locals())
 	)

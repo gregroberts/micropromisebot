@@ -115,28 +115,29 @@ def insert_promise(row):
 
 
 def insert_pledge(row):
-	c.execute('''
+        c = db.cursor()
+        c.execute('''
 			insert into pledges 
 			values
 			(?,?,?,?)
 		''', 
-		row
-	)
-	db.commit()
-	c.close()
+        	row
+        )
+        db.commit()
+        c.close()
 
 
 def insert_watcher(row):
-	c = db.cursor()
-	c.execute('''
+        c = db.cursor()
+        c.execute('''
 		INSERT INTO watchers
 		values
 			(?,?,?)
 	''', 
 		row
 	)
-	db.commit()
-	c.close()
+        db.commit()
+        c.close()
 
 
 def get_pledges():

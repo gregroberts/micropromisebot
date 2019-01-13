@@ -18,7 +18,14 @@ def handle_promise(post):
 	user_id = post.author.id
 	user_name = post.author.name
 	created_time = post.created_utc
-	timeframe =  ','.join(re.findall('\[\w+] \[(.*)\]', title))
+	timeframe =  ','.join(re.findall('\[\w+\][ ]?\[(.*)\]', title))
+	if timeframe == '':
+		comment_on_thread(
+			_id,
+			'Whoops, I cant parse a timeframe from your post :(\n'+
+			'Please follow the format [PROMISE] [x hours/days/weeks] ...'
+		)
+		return None
 	print(datetime.fromtimestamp(created_time))
 	cal = pdt.Calendar()
 	elapses_time = cal.parseDT(

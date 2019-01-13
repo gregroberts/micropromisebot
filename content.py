@@ -3,8 +3,14 @@ from templates import *
 rt = get_reddit()
 
 
+def comment_on_thread(post, body):
+	bot_comment_id = post.reply(body = body).id
+	return bot_comment_id
+
 def comment_promise(post, title, elapses_time):
-	bot_comment_id = post.reply(body = PROMISE_COMMENT_BODY.format(**locals())).id
+	comment = post.reply(body = PROMISE_COMMENT_BODY.format(**locals()))
+	comment.mod.distinguish(sticky = True)
+	bot_comment_id = comment.id
 	return bot_comment_id
 
 def comment_pledge(pledger):
@@ -21,7 +27,8 @@ def post_results_thread(promiser_id, created_time, promise_title, pledgers, prom
 	results_thread_body = RESULTS_THREAD_BODY.format(**locals())
 	results_thread = rt.subreddit('micropromise').submit(
 		f'[RESULTS] {promise_title}',
-		selftext = results_thread_body
+		selftext = results_thread_body,
+		flair_text = 'RESULTS'
 	)
 	return results_thread
 

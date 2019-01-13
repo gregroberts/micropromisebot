@@ -9,6 +9,10 @@ def handle_plegde(pledge):
 	if pledge[1].id in pledges:
 		print('Pledge already handled')
 		return None
+	promise = get_promise(pledge[0].id)
+	if promise is None:
+		print('Promise no exist')
+		return None
 	insert_pledge(
 		(
 			pledge[0].id,
@@ -18,7 +22,6 @@ def handle_plegde(pledge):
 		)
 	)
 	comment_pledge(pledge[1])
-	promise = get_promise(pledge[0].id)
 	bot_comment_id = promise[6]
 	rt = get_reddit()
 	bot_comment = rt.comment(bot_comment_id)

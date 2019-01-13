@@ -4,19 +4,36 @@ def get_reddit():
 	rt = praw.Reddit('micro')
 	return rt
 
+def get_subreddit():
+	rt = get_reddit()
+	sb = rt.subreddit('micropromise')
+	return sb
+
 def get_new_posts(limit=10):
 	print('getting new posts')
-	rt = get_reddit()
-	s=rt.subreddit('micropromise')
+	s = get_subreddit()
 	return list(s.new(limit=limit))
 
 
 def get_promise_posts():
-	promise_posts = []
-	for i in get_new_posts(50):
-		if i.title.lower().startswith('[promise]'):
-			promise_posts.append(i)
-	return promise_posts
+	mp = get_subreddit()
+	promise_posts = mp.search('title:\[promise\]')
+	return [
+		i for i in promise_posts
+		if '[promise]' in i.title.lower()
+		and str(i.link_flair_text) !='ELAPSED'
+	]
+
+
+def get_results_posts():
+	print(' get_results_posts')
+	mp = get_subreddit()
+	results_posts = mp.search('title:[results]')
+	return [
+		i for i in results_posts
+		if '[results]' in i.title.lower()
+		and str(i.link_flair_text) !='ELAPSED'
+	]
 
 
 def get_all_promise_comments():
@@ -45,13 +62,6 @@ def get_all_pledge_comments():
 	return pledge_comments
 
 
-def get_results_posts():
-	print(' get_results_posts')
-	results_posts = []
-	for i in get_new_posts(50):
-		if i.title.lower().startswith('[results]'):
-			results_posts.append(i)
-	return results_posts
 
 
 def get_all_results_comments(results_thread):

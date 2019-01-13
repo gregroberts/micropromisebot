@@ -1,17 +1,14 @@
 micropromisebot TODO
 
-refactor:
-	- make sure broken promise posts dont get repeatedly finished
 
-- throttle users
-	- for pledges or promises
-	- if user has > 5 active
-	- reply: denied
+- set post flair:
+	- mark promises/results/meta with flair
+	- mark kept promises/results with kept! flair
 
-- mark threads as expired
-- make micropromisebot promise comment stickied
 - stop accepting pledges to non-live promises
 - stop accepting KEPT to results threads after 24 hours
 - replace pledge comment with dm
 - facility for auto threads (automod?)
 - weekly leaderboard (Saturday)
+
+

@@ -162,6 +162,20 @@ def get_finished_promises():
 	c.close()
 	return finished_promises
 
+def get_expired_promises():
+	c = db.cursor()
+	c.execute('''
+		select *,datetime(elapses_time,\'unixepoch\') from promises
+		where 
+			datetime(elapses_time,\'unixepoch\')<datetime(\'now\')
+        and
+        	elapses_time is not null
+			
+	''')
+	expired_promises = c.fetchall()
+	c.close()
+	return expired_promises
+
 
 def update_finished_promise(promise_id):
         c = db.cursor()

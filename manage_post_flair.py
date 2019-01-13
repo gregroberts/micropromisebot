@@ -9,10 +9,10 @@ def mark_promises_as_expired():
 	expired_ids = set(i[0] for i in expired_promises)
 	for promise_post in promise_posts:
 		if promise_post.id in expired_ids:
-			print(f'EXPIRED: {promise_post.title}')
-			promise_post.mod.flair(text='PROMISE|ELAPSED')
+			extend_post_flair(promise_post, ['PROMISE','ELAPSED'])
 		else:
 			print(f'NOT EXPIRED: {promise_post.title}')
+			extend_post_flair(promise_post, ['PROMISE'])
 
 
 def mark_results_as_expired():
@@ -22,12 +22,26 @@ def mark_results_as_expired():
 	for results_post in results_posts:
 		if results_post.created_utc < two_days_ago:
 			print(f'EXPIRED: {results_post.title}')
-			results_post.mod.flair(text='RESULTS|ELAPSED')
+			extend_post_flair(results_post, ['RESULTS','ELAPSED'])
 		else:
 			print(f'NOT EXPIRED: {results_post.title}')
+			extend_post_flair(results_post, ['RESULTS'])
+
+def mark_meta_posts():
+	meta_posts = get_meta_posts()
+	for i in meta_posts:
+		print(f'META {i.title}')
+		extend_post_flair(i,['META'])
 
 
+def mark_all():
+	print('meta')
+	mark_meta_posts()
+	print('res')
+	mark_results_as_expired()
+	print('prom')
+	mark_promises_as_expired()
 
 
 if __name__ == '__main__':
-	mark_results_as_expired()
+	mark_all()

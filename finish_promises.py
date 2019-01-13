@@ -19,6 +19,14 @@ def finish_promise(promise):
 		pledgers,
 		promise
 	).id
+	update_finished_promise(promise[0])
+	rt = get_reddit()
+	promise_thread = rt.submission(id=promise[0])
+	promise_thread.reply(
+		'Hey! this promise has now elapsed \n'+
+		'Come join us in the results thread:\n'+
+		f'https://www.reddit.com/r/micropromise/comments/{results_thread}/'
+		)
 	message_promiser(
                 promise_title[:80]+'...', 
 		results_thread,
@@ -47,7 +55,6 @@ def finish_promise(promise):
 			promise_title,
 			results_thread
 		)
-	update_finished_promise(promise[0])
 
 def finish_all_promises():
 	finished_promises = get_finished_promises()

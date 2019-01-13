@@ -28,7 +28,6 @@ def post_results_thread(promiser_id, created_time, promise_title, pledgers, prom
 	results_thread = rt.subreddit('micropromise').submit(
 		f'[RESULTS] {promise_title}',
 		selftext = results_thread_body,
-		flair_text = 'RESULTS'
 	)
 	return results_thread
 

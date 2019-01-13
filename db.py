@@ -69,7 +69,7 @@ def get_promise(id):
 		'''
 	)
 	data = c.fetchone()
-	print(data)
+	#print(data)
 	return data
 
 

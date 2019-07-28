@@ -21,7 +21,7 @@ def get_promise_posts():
 	return [
 		i for i in promise_posts
 		if '[promise]' in i.title.lower()
-		#and not 'ELAPSED' in str(i.link_flair_text)
+		and not 'ELAPSED' in str(i.link_flair_text)
 	]
 
 
@@ -32,7 +32,7 @@ def get_results_posts():
 	return [
 		i for i in results_posts
 		if '[results]' in i.title.lower()
-		#and not 'ELAPSED' in str(i.link_flair_text)
+		and not 'ELAPSED' in str(i.link_flair_text)
 	]
 
 

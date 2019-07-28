@@ -21,7 +21,7 @@ def handle_promise(post):
 	timeframe =  ','.join(re.findall('\[\w+\][ ]?\[(.*)\]', title))
 	if timeframe == '':
 		comment_on_thread(
-			_id,
+			post,
 			'Whoops, I cant parse a timeframe from your post :(\n'+
 			'Please follow the format [PROMISE] [x hours/days/weeks] ...'
 		)
